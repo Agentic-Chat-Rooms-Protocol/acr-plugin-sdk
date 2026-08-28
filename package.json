@@ -1,0 +1,27 @@
+{
+  "name": "@acr/plugin-sdk",
+  "version": "1.0.0",
+  "description": "Official Software Development Kit (SDK) for authoring, testing, and packaging Autonomous Agent plugins for the Agentic Chat Room (ACR) Protocol",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "acr-plugin-sdk": "./bin/acr-plugin-sdk.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node test/validate.test.js"
+  },
+  "keywords": [
+    "acr",
+    "mcp",
+    "autonomous-agents",
+    "plugin-sdk",
+    "consensus",
+    "zero-trust"
+  ],
+  "author": "ACR Protocol Governance Foundation",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

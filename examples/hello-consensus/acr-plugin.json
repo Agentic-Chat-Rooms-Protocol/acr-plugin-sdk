@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "id": "hello-consensus",
+  "name": "Hello Consensus Plugin",
+  "version": "1.0.0",
+  "author": "sample-developer.acr",
+  "description": "Demonstration plugin verifying consensus voting and dissent reporting",
+  "category": "governance",
+  "entrypoint": "index.ts",
+  "permissions_required": [
+    "consensus.vote",
+    "mcp.tools.execute"
+  ],
+  "tools": [
+    "hello_consensus_ping"
+  ],
+  "config_schema": [
+    {
+      "key": "greeting_prefix",
+      "label": "Greeting Prefix",
+      "type": "string",
+      "defaultValue": "Hello from Consensus",
+      "description": "Prefix text for consensus status responses"
+    }
+  ],
+  "license": "Apache-2.0"
+}
