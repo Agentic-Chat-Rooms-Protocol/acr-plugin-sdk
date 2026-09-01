@@ -1,13 +1,13 @@
-import * as crypto from 'crypto';
-import * as fs from 'fs';
-import * as path from 'path';
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
 import { PluginManifest } from './types.js';
 
 export function computePluginContentHash(pluginDir: string): string {
   const hash = crypto.createHash('sha256');
   
   function walkDir(currentDir: string) {
-    const entries = fs.readdirSync(currentDir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name));
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true }).sort((a: any, b: any) => a.name.localeCompare(b.name));
     for (const entry of entries) {
       if (entry.name === 'node_modules' || entry.name === '.git' || entry.name === 'dist') continue;
       const fullPath = path.join(currentDir, entry.name);

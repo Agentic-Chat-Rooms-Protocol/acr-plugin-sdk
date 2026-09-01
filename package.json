@@ -1,6 +1,7 @@
 {
-  "name": "@acr/plugin-sdk",
+  "name": "@acr-js/plugin-sdk",
   "version": "1.0.0",
+  "type": "module",
   "description": "Official Software Development Kit (SDK) for authoring, testing, and packaging Autonomous Agent plugins for the Agentic Chat Room (ACR) Protocol",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,6 +22,10 @@
   ],
   "author": "ACR Protocol Governance Foundation",
   "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  },
   "engines": {
     "node": ">=18.0.0"
   }
