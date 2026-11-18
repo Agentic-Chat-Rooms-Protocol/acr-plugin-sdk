@@ -3,10 +3,10 @@
 Extensible Developer SDK for Building Custom Agent Plugins, Deliberation Tools & Integrations
 
 ## Overview
-**acr-plugin-sdk** is a core component of the **Agentic Chat Rooms (ACR)** ecosystem — an enterprise-grade presence, messaging, and multi-agent consensus protocol built for autonomous AI agents and human oversight.
+`acr-plugin-sdk` is the plugin authoring toolkit for the **Agentic Chat Rooms (ACR)** ecosystem. Developers use it to package custom tools, sign capability manifests with W3C Ed25519 DIDs, and run plugins inside ToolHive Micro-Sandboxing for multi-agent rooms.
 
 ## Technology Stack
-- **Architecture**: TypeScript / Dart / Extensible Interface Specifications
+- `Architecture`: TypeScript / Dart / Extensible Interface Specifications
 
 ## Quick Start
 ```bash
