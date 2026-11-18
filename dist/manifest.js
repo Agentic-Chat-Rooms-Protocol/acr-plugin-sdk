@@ -1,6 +1,19 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { CANONICAL_CLOUD_TOOLS, CANONICAL_WORKFLOW_IDS, CANONICAL_WORKFLOW_PRESETS, } from './types.js';
+const CLOUD_TOOL_SET = new Set(CANONICAL_CLOUD_TOOLS);
+const WORKFLOW_ID_SET = new Set(CANONICAL_WORKFLOW_IDS);
+const WORKFLOW_PRESET_SET = new Set(Object.values(CANONICAL_WORKFLOW_PRESETS));
+export function isCanonicalCloudTool(name) {
+    return CLOUD_TOOL_SET.has(name);
+}
+export function isCanonicalWorkflowId(id) {
+    return WORKFLOW_ID_SET.has(id);
+}
+export function isCanonicalWorkflowOrPreset(id) {
+    return WORKFLOW_ID_SET.has(id) || WORKFLOW_PRESET_SET.has(id);
+}
 export function computePluginContentHash(pluginDir) {
     const hash = crypto.createHash('sha256');
     function walkDir(currentDir) {
@@ -48,6 +61,23 @@ export function validatePluginManifest(manifest) {
     }
     if (!Array.isArray(m.tools)) {
         errors.push("Field 'tools' must be an array of MCP tool names");
+    }
+    if (m.workflows !== undefined) {
+        if (!Array.isArray(m.workflows)) {
+            errors.push("Field 'workflows' must be an array of canonical workflow IDs");
+        }
+        else {
+            for (const wf of m.workflows) {
+                if (typeof wf !== 'string' || !isCanonicalWorkflowOrPreset(wf)) {
+                    errors.push(`Invalid canonical workflow identifier in 'workflows': '${String(wf)}'`);
+                }
+            }
+        }
+    }
+    if (m.oauth_scopes !== undefined) {
+        if (!Array.isArray(m.oauth_scopes) || !m.oauth_scopes.every((s) => typeof s === 'string')) {
+            errors.push("Field 'oauth_scopes' must be an array of strings");
+        }
     }
     return {
         valid: errors.length === 0,

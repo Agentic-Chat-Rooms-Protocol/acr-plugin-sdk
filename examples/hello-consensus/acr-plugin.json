@@ -2,9 +2,9 @@
   "schema_version": "1.0.0",
   "id": "hello-consensus",
   "name": "Hello Consensus Plugin",
-  "version": "1.0.0",
-  "author": "sample-developer.acr",
-  "description": "Demonstration plugin verifying consensus voting and dissent reporting",
+  "version": "1.0.1",
+  "author": "@acr-js",
+  "description": "Demonstration plugin verifying 67% consensus voting, room messaging, and dissent reporting",
   "category": "governance",
   "entrypoint": "index.ts",
   "permissions_required": [
@@ -12,7 +12,16 @@
     "mcp.tools.execute"
   ],
   "tools": [
+    "acr_room_consensus",
+    "acr_room_send",
     "hello_consensus_ping"
+  ],
+  "workflows": [
+    "bft-consensus-deliberation"
+  ],
+  "oauth_scopes": [
+    "profile",
+    "email"
   ],
   "config_schema": [
     {
@@ -23,5 +32,6 @@
       "description": "Prefix text for consensus status responses"
     }
   ],
+  "repository_url": "https://github.com/Agentic-Chat-Rooms-Protocol/acr-plugin-sdk",
   "license": "Apache-2.0"
 }

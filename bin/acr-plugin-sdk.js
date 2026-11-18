@@ -51,7 +51,9 @@ switch (command) {
       category: 'governance',
       entrypoint: 'dist/index.js',
       permissions_required: ['chat.read', 'mcp.tools.execute'],
-      tools: [`${pluginName.replace(/-/g, '_')}_execute`],
+      tools: ['acr_room_send', `${pluginName.replace(/-/g, '_')}_execute`],
+      workflows: ['bft-consensus-deliberation'],
+      oauth_scopes: ['profile', 'email'],
       config_schema: [
         {
           key: 'log_level',
@@ -67,7 +69,7 @@ switch (command) {
 
     fs.writeFileSync(path.join(targetDir, 'acr-plugin.json'), JSON.stringify(manifest, null, 2));
 
-    const sampleCode = `import { definePlugin, createMcpTool } from '@acr/plugin-sdk';
+    const sampleCode = `import { definePlugin, createMcpTool } from '@acr-js/plugin-sdk';
 
 const executeTool = createMcpTool({
   name: '${pluginName.replace(/-/g, '_')}_execute',
@@ -134,7 +136,7 @@ export default definePlugin({
   }
 
   default:
-    console.log(`ACR Plugin SDK CLI v1.0.0
+    console.log(`ACR Plugin SDK CLI v1.0.1
 Usage:
   acr-plugin-sdk init <name>     Scaffold a new ACR plugin
   acr-plugin-sdk validate [file] Validate acr-plugin.json
